@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <!-- Framework CSS -->
+    <link rel="stylesheet" href="/blueprint/screen.css" type="text/css" media="screen, projection">
+    <link rel="stylesheet" href="/blueprint/print.css" type="text/css" media="print">
+    <!--[if lt IE 8]><link rel="stylesheet" href="../blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
+    <style type="text/css" media="screen">
+      p, table, hr, .box { margin-bottom:25px; }
+      .box p { margin-bottom:10px; }
+    </style>
+	<?php echo $this->headMeta(); ?>
+	<?php echo $this->headTitle(); ?>
+  </head>
+  <body>
+
+    <div class="container">
+      <h1>directory-in</h1>
+      <hr>
+      <p>Welcome to directory-in.</p>
+		<?php echo $this->layout()->content; ?>
+      <p><a href="http://validator.w3.org/check?uri=referer">
+        <img src="parts/valid.png" alt="Valid HTML 4.01 Strict" height="31" width="88" class="top"></a></p>
+
+    </div>
+  </body>
+</html>
+
