@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 24, 2012 at 05:51 PM
+-- Generation Time: Oct 28, 2012 at 05:20 PM
 -- Server version: 5.5.24-log
 -- PHP Version: 5.3.13
 
@@ -104,6 +104,7 @@ CREATE TABLE IF NOT EXISTS `listing` (
   `Status` tinyint(4) NOT NULL DEFAULT '1',
   `Order` tinyint(11) NOT NULL,
   `NumVisit` int(11) NOT NULL DEFAULT '0',
+  `Featured` tinyint(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
