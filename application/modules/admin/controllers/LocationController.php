@@ -1,6 +1,6 @@
 <?php
 
-class Admin_CategoryController extends Zend_Controller_Action
+class Admin_LocationController extends Zend_Controller_Action
 {
 
     public function init()
@@ -12,10 +12,9 @@ class Admin_CategoryController extends Zend_Controller_Action
     public function indexAction()
     {
         // action body
-		//$industries = new  DirectroyIn_Model_Category();
-		$form = new DirectoryIn_Form_Example();
+		//$industries = new  DirectoryIn_Model_Location();		
 		$q = Doctrine_Query::create()
-			->from('DirectoryIn_Model_Category c');
+			->from('DirectoryIn_Model_Location c');
 		$result = $q->fetchArray();
 		$this->view->records = $result;		
 		//var_dump($result);
@@ -27,7 +26,7 @@ class Admin_CategoryController extends Zend_Controller_Action
 
 	public function addAction()
 	{
-		$form = new Admin_Form_category();
+		$form = new Admin_Form_Location();
 		$form->submit->setLabel('Add');
 		$this->view->form = $form;
 		// process form
@@ -35,14 +34,14 @@ class Admin_CategoryController extends Zend_Controller_Action
 			$formData = $this->getRequest()->getPost();
 			if ($form->isValid($formData)) {
 				$input = $form->getValues();
-				$category = new DirectoryIn_Model_Category;
-				$category->fromArray($form->getValues());
-				$category->Created = time();
-				$category->save();
-				$id = $category->ID;
+				$location = new DirectoryIn_Model_Location;
+				$location->fromArray($form->getValues());
+				$location->Created = time();
+				$location->save();
+				$id = $location->ID;
 				$this->_helper->getHelper('FlashMessenger')->addMessage(
 				'New category created #' . $id );
-				$this->_redirect('/admin/category');			
+				$this->_redirect('/admin/location');			
 			} else {
 				$form->populate($formData);
 			}
@@ -50,7 +49,7 @@ class Admin_CategoryController extends Zend_Controller_Action
 	}		
 	
 	public function editAction(){
-		$form = new Admin_Form_category();
+		$form = new Admin_Form_Location();
 		$form->submit->setLabel('Add');
 		$this->view->form = $form;
 		// process form 
@@ -58,14 +57,14 @@ class Admin_CategoryController extends Zend_Controller_Action
 			$formData = $this->getRequest()->getPost();
 			if ($form->isValid($formData)) {
 				$input = $form->getValues();
-				$category = Doctrine::getTable('DirectoryIn_Model_Category')->find($input['ID']);
-				$category->fromArray($input);
+				$location = Doctrine::getTable(DirectoryIn_Model_Location)->find($input['ID']);
+				$location->fromArray($input);
 				$category->Modified = time();
-				$category->save();
-				$id = $category->ID;
+				$location->save();
+				$id = $location->ID;
 				$this->_helper->getHelper('FlashMessenger')->addMessage(
 				'Category updated  #' . $id );
-				$this->_redirect('/admin/category');			
+				$this->_redirect('/admin/location');			
 			} else {
 				$form->populate($formData);
 			}
@@ -74,7 +73,7 @@ class Admin_CategoryController extends Zend_Controller_Action
 			$id = $this->_getParam('id', 0);
 			if ($id > 0) {
 				$q = Doctrine_Query::create()
-				->from('DirectoryIn_Model_Category C')
+				->from('DirectoryIn_Model_Location C')
 				->where('C.ID = ?', $id);
 				$result = $q->fetchArray();
 				if (count($result) == 1) {
@@ -95,7 +94,7 @@ class Admin_CategoryController extends Zend_Controller_Action
 			if ($del == 'Yes') { 
 			$id = $this->getRequest()->getPost('id');
 				$q = Doctrine_Query::create()
-				->delete('DirectoryIn_Model_Category C')
+				->delete('DirectoryIn_Model_Location C')
 				->where('C.ID', $id);
 				$result = $q->execute();		
 				$this->_helper->getHelper('FlashMessenger')->addMessage(
@@ -105,7 +104,7 @@ class Admin_CategoryController extends Zend_Controller_Action
 		} else {
 			$id = $this->_getParam('id', 0);
 			$q = Doctrine_Query::create()
-				->from('DirectoryIn_Model_Category C')
+				->from('DirectoryIn_Model_Location C')
 				->where('C.ID = ?', $id);
 			$result = $q->fetchArray();
 			if (count($result) == 1) {

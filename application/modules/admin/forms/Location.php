@@ -1,5 +1,5 @@
 <?php
-class Admin_Form_Category extends Zend_Form
+class Admin_Form_Location extends Zend_Form
 {
 
 	public function init()
@@ -17,7 +17,7 @@ class Admin_Form_Category extends Zend_Form
 		->addValidator('NotEmpty');
 		
 		$description = new Zend_Form_Element_TextArea('Description');
-		$description->setLabel('Name')
+		$description->setLabel('Description')
 		->setOptions(array('rows' => '15','cols' => '60'))
 		//->setRequired(true)
 		->addFilter('StripTags')
