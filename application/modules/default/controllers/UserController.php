@@ -49,6 +49,20 @@ class Default_UserController extends Zend_Controller_Action
 			}
 		}
 	}
+	
+	public function registerAction(){
+		$form = new DirectoryIn_Form_Register;
+		$this->view->form = $form;
+		// check for valid input
+		// authenticate using adapter
+		// persist user record to session
+		// redirect to original request URL if present
+		if ($this->getRequest()->isPost()) {
+			if ($form->isValid($this->getRequest()->getPost())) {
+				$values = $form->getValues();
+			}
+		}
+	}
 
 	public function successAction() 
 	{
