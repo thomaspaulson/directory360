@@ -13,9 +13,9 @@ class Admin_CategoryController extends Zend_Controller_Action
     {
         // action body
 		//$industries = new  DirectroyIn_Model_Category();
-		$form = new DirectoryIn_Form_Example();
+		$form = new Directory_Form_Example();
 		$q = Doctrine_Query::create()
-			->from('DirectoryIn_Model_Category c');
+			->from('Directory_Model_Category c');
 		$result = $q->fetchArray();
 		$this->view->records = $result;		
 		//var_dump($result);
@@ -35,7 +35,7 @@ class Admin_CategoryController extends Zend_Controller_Action
 			$formData = $this->getRequest()->getPost();
 			if ($form->isValid($formData)) {
 				$input = $form->getValues();
-				$category = new DirectoryIn_Model_Category;
+				$category = new Directory_Model_Category;
 				$category->fromArray($form->getValues());
 				$category->Created = time();
 				$category->save();
@@ -58,7 +58,7 @@ class Admin_CategoryController extends Zend_Controller_Action
 			$formData = $this->getRequest()->getPost();
 			if ($form->isValid($formData)) {
 				$input = $form->getValues();
-				$category = Doctrine::getTable('DirectoryIn_Model_Category')->find($input['ID']);
+				$category = Doctrine::getTable('Directory_Model_Category')->find($input['ID']);
 				$category->fromArray($input);
 				$category->Modified = time();
 				$category->save();
@@ -74,7 +74,7 @@ class Admin_CategoryController extends Zend_Controller_Action
 			$id = $this->_getParam('id', 0);
 			if ($id > 0) {
 				$q = Doctrine_Query::create()
-				->from('DirectoryIn_Model_Category C')
+				->from('Directory_Model_Category C')
 				->where('C.ID = ?', $id);
 				$result = $q->fetchArray();
 				if (count($result) == 1) {
@@ -95,7 +95,7 @@ class Admin_CategoryController extends Zend_Controller_Action
 			if ($del == 'Yes') { 
 			$id = $this->getRequest()->getPost('id');
 				$q = Doctrine_Query::create()
-				->delete('DirectoryIn_Model_Category C')
+				->delete('Directory_Model_Category C')
 				->where('C.ID', $id);
 				$result = $q->execute();		
 				$this->_helper->getHelper('FlashMessenger')->addMessage(
@@ -105,7 +105,7 @@ class Admin_CategoryController extends Zend_Controller_Action
 		} else {
 			$id = $this->_getParam('id', 0);
 			$q = Doctrine_Query::create()
-				->from('DirectoryIn_Model_Category C')
+				->from('Directory_Model_Category C')
 				->where('C.ID = ?', $id);
 			$result = $q->fetchArray();
 			if (count($result) == 1) {

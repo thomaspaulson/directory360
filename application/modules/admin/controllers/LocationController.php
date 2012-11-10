@@ -12,9 +12,9 @@ class Admin_LocationController extends Zend_Controller_Action
     public function indexAction()
     {
         // action body
-		//$industries = new  DirectoryIn_Model_Location();		
+		//$industries = new  Directory_Model_Location();		
 		$q = Doctrine_Query::create()
-			->from('DirectoryIn_Model_Location c');
+			->from('Directory_Model_Location c');
 		$result = $q->fetchArray();
 		$this->view->records = $result;		
 		//var_dump($result);
@@ -34,7 +34,7 @@ class Admin_LocationController extends Zend_Controller_Action
 			$formData = $this->getRequest()->getPost();
 			if ($form->isValid($formData)) {
 				$input = $form->getValues();
-				$location = new DirectoryIn_Model_Location;
+				$location = new Directory_Model_Location;
 				$location->fromArray($form->getValues());
 				$location->Created = time();
 				$location->save();
@@ -57,7 +57,7 @@ class Admin_LocationController extends Zend_Controller_Action
 			$formData = $this->getRequest()->getPost();
 			if ($form->isValid($formData)) {
 				$input = $form->getValues();
-				$location = Doctrine::getTable(DirectoryIn_Model_Location)->find($input['ID']);
+				$location = Doctrine::getTable(Directory_Model_Location)->find($input['ID']);
 				$location->fromArray($input);
 				$category->Modified = time();
 				$location->save();
@@ -73,7 +73,7 @@ class Admin_LocationController extends Zend_Controller_Action
 			$id = $this->_getParam('id', 0);
 			if ($id > 0) {
 				$q = Doctrine_Query::create()
-				->from('DirectoryIn_Model_Location C')
+				->from('Directory_Model_Location C')
 				->where('C.ID = ?', $id);
 				$result = $q->fetchArray();
 				if (count($result) == 1) {
@@ -94,7 +94,7 @@ class Admin_LocationController extends Zend_Controller_Action
 			if ($del == 'Yes') { 
 			$id = $this->getRequest()->getPost('id');
 				$q = Doctrine_Query::create()
-				->delete('DirectoryIn_Model_Location C')
+				->delete('Directory_Model_Location C')
 				->where('C.ID', $id);
 				$result = $q->execute();		
 				$this->_helper->getHelper('FlashMessenger')->addMessage(
@@ -104,7 +104,7 @@ class Admin_LocationController extends Zend_Controller_Action
 		} else {
 			$id = $this->_getParam('id', 0);
 			$q = Doctrine_Query::create()
-				->from('DirectoryIn_Model_Location C')
+				->from('Directory_Model_Location C')
 				->where('C.ID = ?', $id);
 			$result = $q->fetchArray();
 			if (count($result) == 1) {

@@ -11,7 +11,7 @@ class Default_UserController extends Zend_Controller_Action
     public function indexAction()
     {
         // action body
-        $session = new Zend_Session_Namespace('directoryin.auth');
+        $session = new Zend_Session_Namespace('Directory.auth');
         print_r($session->user);
     }
 
@@ -19,7 +19,7 @@ class Default_UserController extends Zend_Controller_Action
     // login action
 	public function loginAction()
 	{
-		$form = new DirectoryIn_Form_Login;
+		$form = new Directory_Form_Login;
 		$this->view->form = $form;
 		// check for valid input
 		// authenticate using adapter
@@ -28,11 +28,11 @@ class Default_UserController extends Zend_Controller_Action
 		if ($this->getRequest()->isPost()) {
 			if ($form->isValid($this->getRequest()->getPost())) {
 				$values = $form->getValues();
-				$adapter = new DirectoryIn_Auth_Adapter_Doctrine($values['email'], $values['password']);
+				$adapter = new Directory_Auth_Adapter_Doctrine($values['email'], $values['password']);
 				$auth = Zend_Auth::getInstance();
 				$result = $auth->authenticate($adapter);
 				if ($result->isValid()) {
-					$session = new Zend_Session_Namespace('directoryin.auth');
+					$session = new Zend_Session_Namespace('Directory.auth');
 					$session->user = $adapter->getResultArray('Password'); 
 					if (isset($session->requestURL)) {
 						$url = $session->requestURL;
@@ -51,7 +51,7 @@ class Default_UserController extends Zend_Controller_Action
 	}
 	
 	public function registerAction(){
-		$form = new DirectoryIn_Form_Register;
+		$form = new Directory_Form_Register;
 		$this->view->form = $form;
 		// check for valid input
 		// authenticate using adapter
