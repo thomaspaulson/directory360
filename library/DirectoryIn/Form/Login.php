@@ -13,7 +13,7 @@ class DirectoryIn_Form_Login extends Zend_Form
 	
 		// create text input for name 
 		$email = new Zend_Form_Element_Text('email');
-		$email->setLabel('Username:')
+		$email->setLabel('Email:')
 		->setOptions(array('size' => '30'))
 		->setRequired(true)
 		->addFilter('HtmlEntities')
