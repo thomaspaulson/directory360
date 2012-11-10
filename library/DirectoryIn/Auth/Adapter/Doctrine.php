@@ -20,10 +20,10 @@ class DirectoryIn_Auth_Adapter_Doctrine implements Zend_Auth_Adapter_Interface
 	{
 		$q = Doctrine_Query::create()
 		->from('DirectoryIn_Model_User u')
-		->where('u.Email = ? AND u.Password = ?',
+		->where('u.Email = ? AND u.Password = md5(?)',
 		array($this->username, $this->password)
 		);
-		$this->_resultArray = $q->fetchArray();
+		$this->_resultArray = $q->fetchArray();//print_r($this->_resultArray);
 		if (count($this->_resultArray) == 1) {
 			return new Zend_Auth_Result(
 			Zend_Auth_Result::SUCCESS, $this->username, array());
