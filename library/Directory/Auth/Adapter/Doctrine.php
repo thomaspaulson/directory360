@@ -19,7 +19,7 @@ class Directory_Auth_Adapter_Doctrine implements Zend_Auth_Adapter_Interface
 	public function authenticate()
 	{
 		$q = Doctrine_Query::create()
-		->from('DirectoryIn_Model_User u')
+		->from('Directory_Model_User u')
 		->where('u.Email = ? AND u.Password = md5(?)',
 		array($this->username, $this->password)
 		);

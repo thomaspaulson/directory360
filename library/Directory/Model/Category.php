@@ -10,7 +10,7 @@
  * @author     ##NAME## <##EMAIL##>
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-class Directory_Model_Category extends DirectoryIn_Model_BaseCategory
+class Directory_Model_Category extends Directory_Model_BaseCategory
 {
 
 
