@@ -96,7 +96,7 @@ class Admin_CategoryController extends Zend_Controller_Action
 			$id = $this->getRequest()->getPost('id');
 				$q = Doctrine_Query::create()
 				->delete('Directory_Model_Category C')
-				->where('C.ID', $id);
+				->where('C.ID = ?', $id);
 				$result = $q->execute();		
 				$this->_helper->getHelper('FlashMessenger')->addMessage(
 				'Category deleted #' . $id );				
