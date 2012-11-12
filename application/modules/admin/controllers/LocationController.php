@@ -95,7 +95,7 @@ class Admin_LocationController extends Zend_Controller_Action
 			$id = $this->getRequest()->getPost('id');
 				$q = Doctrine_Query::create()
 				->delete('Directory_Model_Location C')
-				->where('C.ID', $id);
+				->where('C.ID= ?', $id);
 				$result = $q->execute();		
 				$this->_helper->getHelper('FlashMessenger')->addMessage(
 				'Category deleted #' . $id );				
@@ -109,7 +109,7 @@ class Admin_LocationController extends Zend_Controller_Action
 			$result = $q->fetchArray();
 			if (count($result) == 1) {
 			// perform adjustment for date selection lists
-			$this->view->category = $result[0];
+			$this->view->location = $result[0];
 			} else {
 				throw new Zend_Controller_Action_Exception('Page not found', 404);
 			}			
