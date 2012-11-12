@@ -37,7 +37,8 @@ class Admin_CategoryController extends Zend_Controller_Action
 				$input = $form->getValues();
 				$category = new Directory_Model_Category;
 				$category->fromArray($form->getValues());
-				$category->Created = time();
+				//$category->Created = time();
+				$category->Created = date('Y-m-d H:i:s', time() );
 				$category->save();
 				$id = $category->ID;
 				$this->_helper->getHelper('FlashMessenger')->addMessage(
@@ -51,7 +52,7 @@ class Admin_CategoryController extends Zend_Controller_Action
 	
 	public function editAction(){
 		$form = new Admin_Form_category();
-		$form->submit->setLabel('Add');
+		$form->submit->setLabel('Edit');
 		$this->view->form = $form;
 		// process form 
 		if ($this->getRequest()->isPost()) {
@@ -60,7 +61,8 @@ class Admin_CategoryController extends Zend_Controller_Action
 				$input = $form->getValues();
 				$category = Doctrine::getTable('Directory_Model_Category')->find($input['ID']);
 				$category->fromArray($input);
-				$category->Modified = time();
+				//$category->Modified = time();
+				$category->Modified = date('Y-m-d H:i:s', time() );
 				$category->save();
 				$id = $category->ID;
 				$this->_helper->getHelper('FlashMessenger')->addMessage(

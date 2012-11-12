@@ -14,7 +14,8 @@ class Admin_LocationController extends Zend_Controller_Action
         // action body
 		//$industries = new  Directory_Model_Location();		
 		$q = Doctrine_Query::create()
-			->from('Directory_Model_Location c');
+			->from('Directory_Model_Location c')
+			->orderBy('c.ID DESC');
 		$result = $q->fetchArray();
 		$this->view->records = $result;		
 		//var_dump($result);
@@ -27,7 +28,7 @@ class Admin_LocationController extends Zend_Controller_Action
 	public function addAction()
 	{
 		$form = new Admin_Form_Location();
-		$form->submit->setLabel('Add');
+		$form->submit->setLabel('Add	');
 		$this->view->form = $form;
 		// process form
 		if ($this->getRequest()->isPost()) {
@@ -36,7 +37,8 @@ class Admin_LocationController extends Zend_Controller_Action
 				$input = $form->getValues();
 				$location = new Directory_Model_Location;
 				$location->fromArray($form->getValues());
-				$location->Created = time();
+				//$location->Created = time();
+				$location->Created = date('Y-m-d H:i:s', time() );
 				$location->save();
 				$id = $location->ID;
 				$this->_helper->getHelper('FlashMessenger')->addMessage(
@@ -50,7 +52,7 @@ class Admin_LocationController extends Zend_Controller_Action
 	
 	public function editAction(){
 		$form = new Admin_Form_Location();
-		$form->submit->setLabel('Add');
+		$form->submit->setLabel('Edit');
 		$this->view->form = $form;
 		// process form 
 		if ($this->getRequest()->isPost()) {
@@ -59,7 +61,8 @@ class Admin_LocationController extends Zend_Controller_Action
 				$input = $form->getValues();
 				$location = Doctrine::getTable(Directory_Model_Location)->find($input['ID']);
 				$location->fromArray($input);
-				$category->Modified = time();
+				$location->Modified = time();
+				$location->Modified = date('Y-m-d H:i:s', time() );
 				$location->save();
 				$id = $location->ID;
 				$this->_helper->getHelper('FlashMessenger')->addMessage(
