@@ -1,0 +1,29 @@
+@CHARSET "ISO-8859-1";
+
+#Header{
+	height:120px;
+}
+
+#Header h1{
+	margin-top:30px;
+}
+
+#HeaderMenu ul{
+	margin:0px; 
+	padding:0px;
+}
+
+#HeaderMenu ul li{
+	display:inline;
+}
+
+div#SignUp{
+	float:right;	
+	margin-top:0px;	
+}
+
+div#MainMenu{
+	float:right;
+	margin-top:70px;
+	font-size:1.5em;
+}
