@@ -12,18 +12,34 @@
       p, table, hr, .box { margin-bottom:25px; }
       .box p { margin-bottom:10px; }
     </style>
+    <link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/css/site.css" type="text/css" media="screen, projection">
 	<?php echo $this->headMeta(); ?>
 	<?php echo $this->headTitle(); ?>
   </head>
   <body>
 
     <div class="container">
-      <h1>Directory360</h1>
+	  <div class="span-24" id="Header">
+	  	<div class="span-16">
+      	<h1>Directory360</h1>      	
+      	</div>
+      	<div id="HeaderMenu" class="span-8 last">
+      		<div id="SignUp">
+      			<ul class="HeaderMenu"><li>Sign in</li> | <li>Register</li></ul>
+      		</div>
+      		<div class="clear"></div>
+      		<div id="MainMenu">
+      			<ul class="HeaderMenu"><li>Home</li> | <li>About</li></ul>
+      		</div>
+      	</div>
+      </div>
       <hr>
-      <p>Welcome to directory-in.</p>
+      <p>Welcome to directory360.</p>
+      <div class="span-24">
 		<?php echo $this->layout()->content; ?>
-      <p><a href="http://validator.w3.org/check?uri=referer">
-        <img src="parts/valid.png" alt="Valid HTML 4.01 Strict" height="31" width="88" class="top"></a></p>
+	  </div>
+      <p><a href="http://validator.w3.org/check?uri=referer">Valid HTML 4.01 Strict
+        </a></p>
 
     </div>
   </body>
