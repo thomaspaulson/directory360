@@ -1,0 +1,53 @@
+@CHARSET "ISO-8859-1";
+
+#Header{
+	height:100px;
+}
+
+#Header h1{
+	margin-top:30px;
+}
+
+#HeaderMenu ul{
+	margin:0px; 
+	padding:0px;
+}
+
+#HeaderMenu ul li{
+	display:inline;
+}
+
+div#SignUp{
+	float:right;	
+	margin-top:0px;	
+}
+
+div#MainMenu{
+	float:right;
+	margin-top:55px;
+	font-size:1.5em;
+}
+
+.errors, .alert, .notice, .success, .info {padding:0.8em;margin-bottom:1em;border:2px solid #ddd;}
+.errors, .alert {background:#fbe3e4;color:#8a1f11;border-color:#fbc2c4;}
+.notice {background:#fff6bf;color:#514721;border-color:#ffd324;}
+.success {background:#e6efc2;color:#264409;border-color:#c6d880;}
+.info {background:#d5edf8;color:#205791;border-color:#92cae4;}
+.errors a, .alert a {color:#8a1f11;}
+.notice a {color:#514721;}
+.success a {color:#264409;}
+.info a {color:#205791;}
+
+/* form style */ 
+form dl(
+)
+	
+form dl dt(
+	float:left;
+	width:300px;
+}
+
+form dl dd(
+	float:left;
+	width:300px;
+}

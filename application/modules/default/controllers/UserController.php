@@ -1,18 +1,29 @@
 <?php
 
-class Default_UserController extends Zend_Controller_Action
+class Default_UserController extends Directory_Controller_Action
 {
 
     public function init()
     {
         /* Initialize action controller here */
+    	parent::init();
     }
 
     public function indexAction()
     {
         // action body
         $session = new Zend_Session_Namespace('Directory.auth');
-        print_r($session->user);
+        if(!isset($session->user)){
+        	$this->_redirect('user/login');
+        }
+    	if ($this->_helper->getHelper('FlashMessenger')->getMessages()) {
+			$this->view->messages = $this->_helper
+			->getHelper('FlashMessenger')
+			->getMessages();
+		}                
+		
+        $this->view->user = $session->user;  
+        
     }
 
 
@@ -33,7 +44,7 @@ class Default_UserController extends Zend_Controller_Action
 				$result = $auth->authenticate($adapter);
 				if ($result->isValid()) {
 					$session = new Zend_Session_Namespace('Directory.auth');
-					$session->user = $adapter->getResultArray('Password'); 
+					$session->user = $adapter->getResultArray(array('Password','Created','Modified')); 
 					if (isset($session->requestURL)) {
 						$url = $session->requestURL;
 						unset($session->requestURL);
@@ -41,7 +52,7 @@ class Default_UserController extends Zend_Controller_Action
 					} else {
 						$this->_helper->getHelper('FlashMessenger')
 						->addMessage('You were successfully logged in.');
-						$this->_redirect('/user/index');
+						$this->_redirect('/dashboard/index');
 					}
 				} else {
 					$this->view->message =	'You could not be logged in. Please try again.';
@@ -60,7 +71,25 @@ class Default_UserController extends Zend_Controller_Action
 		if ($this->getRequest()->isPost()) {
 			if ($form->isValid($this->getRequest()->getPost())) {
 				$values = $form->getValues();
+				$user = new Directory_Model_User();
+				$user->fromArray($form->getValues());
+				//$user->Password = md5($values['Password']);
+				$user->Created = date('Y-m-d H:i:s', mktime());
+				$user->save();
+				$session = new Zend_Session_Namespace('Directory.auth');		    
+				$session->user = $user->getRecordArray(array('Password','Created','Modified'));
+				$this->_helper->getHelper('FlashMessenger')
+				->addMessage('User registration successful.');
+				$redirectUrl = $values['Redirect'];
+				if($redirectUrl!='')
+					$this->_redirect($redirectUrl);
+				else 
+					$this->_redirect('user');
 			}
+		}
+		else{
+			$redirectUrl = $this->_getParam('redirect',null);
+			$form->Redirect->setValue($redirectUrl);
 		}
 	}
 
@@ -79,7 +108,7 @@ class Default_UserController extends Zend_Controller_Action
 	{
 		Zend_Auth::getInstance()->clearIdentity();
 		Zend_Session::destroy();
-		$this->_redirect('/user/login');
+		$this->_redirect('user/login');
 	}	
 }
 

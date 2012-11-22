@@ -15,7 +15,9 @@ class Admin_CategoryController extends Zend_Controller_Action
 		//$industries = new  DirectroyIn_Model_Category();
 		$form = new Directory_Form_Example();
 		$q = Doctrine_Query::create()
-			->from('Directory_Model_Category c');
+			->from('Directory_Model_Category c')
+			->orderBy('c.ID DESC');
+			
 		$result = $q->fetchArray();
 		$this->view->records = $result;		
 		//var_dump($result);
@@ -37,8 +39,8 @@ class Admin_CategoryController extends Zend_Controller_Action
 				$input = $form->getValues();
 				$category = new Directory_Model_Category;
 				$category->fromArray($form->getValues());
+				$category->Created = date('Y-m-d H:i:s', mktime());
 				//$category->Created = time();
-				$category->Created = date('Y-m-d H:i:s', time() );
 				$category->save();
 				$id = $category->ID;
 				$this->_helper->getHelper('FlashMessenger')->addMessage(
@@ -61,8 +63,8 @@ class Admin_CategoryController extends Zend_Controller_Action
 				$input = $form->getValues();
 				$category = Doctrine::getTable('Directory_Model_Category')->find($input['ID']);
 				$category->fromArray($input);
+				$category->Modified = date('Y-m-d H:i:s', mktime());
 				//$category->Modified = time();
-				$category->Modified = date('Y-m-d H:i:s', time() );
 				$category->save();
 				$id = $category->ID;
 				$this->_helper->getHelper('FlashMessenger')->addMessage(
@@ -95,10 +97,11 @@ class Admin_CategoryController extends Zend_Controller_Action
 		if ($this->getRequest()->isPost()) {
 			$del = $this->getRequest()->getPost('del');
 			if ($del == 'Yes') { 
-			$id = $this->getRequest()->getPost('id');
+				$id = $this->getRequest()->getPost('id');
+				//echo $id; 
 				$q = Doctrine_Query::create()
-				->delete('Directory_Model_Category C')
-				->where('C.ID = ?', $id);
+				->delete('Directory_Model_Category  c')
+				->where('c.ID = ?', array($id));
 				$result = $q->execute();		
 				$this->_helper->getHelper('FlashMessenger')->addMessage(
 				'Category deleted #' . $id );				

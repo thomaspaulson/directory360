@@ -17,6 +17,7 @@ class Admin_LocationController extends Zend_Controller_Action
 			->from('Directory_Model_Location c')
 			->orderBy('c.ID DESC');
 		$result = $q->fetchArray();
+		
 		$this->view->records = $result;		
 		//var_dump($result);
 		if ($this->_helper->getHelper('FlashMessenger')->getMessages()) {
@@ -28,7 +29,7 @@ class Admin_LocationController extends Zend_Controller_Action
 	public function addAction()
 	{
 		$form = new Admin_Form_Location();
-		$form->submit->setLabel('Add	');
+		$form->submit->setLabel('Add');
 		$this->view->form = $form;
 		// process form
 		if ($this->getRequest()->isPost()) {
@@ -37,8 +38,7 @@ class Admin_LocationController extends Zend_Controller_Action
 				$input = $form->getValues();
 				$location = new Directory_Model_Location;
 				$location->fromArray($form->getValues());
-				//$location->Created = time();
-				$location->Created = date('Y-m-d H:i:s', time() );
+				$location->Created = date('Y-m-d H:i:s', mktime());
 				$location->save();
 				$id = $location->ID;
 				$this->_helper->getHelper('FlashMessenger')->addMessage(
@@ -61,8 +61,7 @@ class Admin_LocationController extends Zend_Controller_Action
 				$input = $form->getValues();
 				$location = Doctrine::getTable(Directory_Model_Location)->find($input['ID']);
 				$location->fromArray($input);
-				$location->Modified = time();
-				$location->Modified = date('Y-m-d H:i:s', time() );
+				$location->Modified = date('Y-m-d H:i:s', mktime());
 				$location->save();
 				$id = $location->ID;
 				$this->_helper->getHelper('FlashMessenger')->addMessage(
@@ -77,7 +76,7 @@ class Admin_LocationController extends Zend_Controller_Action
 			if ($id > 0) {
 				$q = Doctrine_Query::create()
 				->from('Directory_Model_Location C')
-				->where('C.ID = ?', $id);
+				->where('C.ID = ?', array($id));
 				$result = $q->fetchArray();
 				if (count($result) == 1) {
 				// perform adjustment for date selection lists
@@ -98,7 +97,7 @@ class Admin_LocationController extends Zend_Controller_Action
 			$id = $this->getRequest()->getPost('id');
 				$q = Doctrine_Query::create()
 				->delete('Directory_Model_Location C')
-				->where('C.ID= ?', $id);
+				->where('C.ID = ?', $id);
 				$result = $q->execute();		
 				$this->_helper->getHelper('FlashMessenger')->addMessage(
 				'Category deleted #' . $id );				

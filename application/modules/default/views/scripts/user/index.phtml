@@ -3,6 +3,18 @@ $this->title = "User profile";
 $this->headTitle($this->title);
 echo "<h3>".$this->title."</h3>";
 ?>
+<?php
+if(isset($this->message)){	
+?> 
 <div style="color:green; font-weight:bold">
 <?php echo $this->message; ?>
 </div>
+<?php 
+}
+?>
+<div class="span-19">
+First name <?php echo $this->user['FirstName']; ?>
+</div>
+<div class="span-5 last">
+</div>
+<hr class="space" />

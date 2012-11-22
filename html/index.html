@@ -1,21 +1,18 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
    "http://www.w3.org/TR/html4/strict.dtd">
-
 <html lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <!-- Framework CSS -->
-    <link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/blueprint/screen.css" type="text/css" media="screen, projection">
-    <link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/blueprint/print.css" type="text/css" media="print">
-    <!--[if lt IE 8]><link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
+    <link rel="stylesheet" href="blueprint/screen.css" type="text/css" media="screen, projection">
+    <link rel="stylesheet" href="blueprint/print.css" type="text/css" media="print">
+    <!--[if lt IE 8]><link rel="stylesheet" href="blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
     <style type="text/css" media="screen">
       p, table, hr, .box { margin-bottom:25px; }
       .box p { margin-bottom:10px; }
     </style>
-    <link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/css/site.css" type="text/css" media="screen, projection">
-	<?php echo $this->headMeta(); ?>
-	<?php echo $this->headTitle(); ?>
-  </head>
+    <link rel="stylesheet" href="css/site.css" type="text/css" media="screen, projection">
+		<title>User profile</title>  </head>
   <body>
 
     <div class="container">
@@ -33,11 +30,21 @@
       		</div>
       	</div>
       </div>
-      <hr>      
+      <hr>
       <div class="span-24">
-      	<h2>Welcome to directory360</h2>
-		<?php echo $this->layout()->content; ?>
+			<div class="span-19">
+			  <p>Welcome to Directory360</p>
+				<h3>User profile</h3>
+			
+			First name Thomas
+			</div>
+			<div class="span-5 last">
+			<ul>
+			<li>My account</li>
+			</ul>
+			</div>
 	  </div>
+	  <hr class="space" />
       <p><a href="http://validator.w3.org/check?uri=referer">Valid HTML 4.01 Strict
         </a></p>
 
