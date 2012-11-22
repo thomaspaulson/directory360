@@ -1,6 +1,6 @@
 <?php
-date_default_timezone_set('Asia/Kolkata');
 
+date_default_timezone_set('Asia/Kolkata');
 // Define path to application directory
 defined('APPLICATION_PATH')
     || define('APPLICATION_PATH', realpath(dirname(__FILE__) . '/../application'));
