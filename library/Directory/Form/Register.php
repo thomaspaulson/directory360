@@ -94,10 +94,10 @@ class Directory_Form_Register extends Zend_Form
 		
 		// attach elements to form		
 		$this->addElement($firstName)
-		->addElement($lastName)
+		//->addElement($lastName)
 		->addElement($email)
-		->addElement($password)
-		->addElement($confirmPassword)
+		//->addElement($password)
+		//->addElement($confirmPassword)
 		//->addElement($captcha)
 		->addElement($submit)
 		->addElement($redirect);

@@ -75,6 +75,7 @@ class Default_UserController extends Directory_Controller_Action
 				$user->fromArray($form->getValues());
 				//$user->Password = md5($values['Password']);
 				$user->Created = date('Y-m-d H:i:s', mktime());
+				$user->Role = 'user';
 				$user->save();
 				$session = new Zend_Session_Namespace('Directory.auth');		    
 				$session->user = $user->getRecordArray(array('Password','Created','Modified'));

@@ -25,17 +25,19 @@
       	</div>
       	<div id="HeaderMenu" class="span-8 last">
       		<div id="SignUp">
-      			<ul class="HeaderMenu"><li>Sign in</li> | <li>Register</li></ul>
+      			<ul class="HeaderMenu">
+				<li><a href="<?php echo $this->url(array('controller'=>'user','action'=>'login'));?>">Sign in</a></li>
+				| <li><a href="<?php echo $this->url(array('controller'=>'user','action'=>'register'));?>">Register</a></li></ul>
       		</div>
       		<div class="clear"></div>
       		<div id="MainMenu">
-      			<ul class="HeaderMenu"><li>Home</li> | <li>About</li></ul>
+      			<ul class="HeaderMenu"><li>Home</li> | <li>About</li> | <li>Listing</li> | <li>Jobs</li> | <li>Contact</li></ul>
       		</div>
       	</div>
       </div>
       <hr>      
       <div class="span-24">
-      	<h2>Welcome to directory360</h2>
+      
 		<?php echo $this->layout()->content; ?>
 	  </div>
       <p><a href="http://validator.w3.org/check?uri=referer">Valid HTML 4.01 Strict
