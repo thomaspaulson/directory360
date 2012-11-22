@@ -16,7 +16,7 @@ class Directory_Form_Login extends Zend_Form
 		$email->setLabel('Email:')
 		->setOptions(array('size' => '30'))
 		->setRequired(true)
-		->addFilter('HtmlEntities')
+		//->addFilter('HtmlEntities')
 		->addFilter('StringTrim');
 		
 		// create text input for password
@@ -24,7 +24,7 @@ class Directory_Form_Login extends Zend_Form
 		$password->setLabel('Password:')
 		->setOptions(array('size' => '30'))
 		->setRequired(true)
-		->addFilter('HtmlEntities')
+		//->addFilter('HtmlEntities')
 		->addFilter('StringTrim');
 		
 		// create submit button
