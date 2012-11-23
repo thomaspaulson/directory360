@@ -15,7 +15,7 @@ class Directory_Form_Register extends Zend_Form
 		// create text input for fist name 
 		$firstName = new Zend_Form_Element_Text('FirstName');
 		$firstName->setLabel('First name:')
-		->setOptions(array('size' => '30','class'=>'title'))
+		->setOptions(array('size' => '30'))
 		->setRequired(true)
 		->addFilter('HtmlEntities')
 		->addFilter('StringTrim');
@@ -23,7 +23,7 @@ class Directory_Form_Register extends Zend_Form
 		// create text input for last name 
 		$lastName = new Zend_Form_Element_Text('LastName');
 		$lastName->setLabel('Last name:')
-		->setOptions(array('size' => '30','class'=>'title'))
+		->setOptions(array('size' => '30'))
 		->addFilter('HtmlEntities')
 		->addFilter('StringTrim');
 		
@@ -31,7 +31,7 @@ class Directory_Form_Register extends Zend_Form
 		// create text input for name 
 		$email = new Zend_Form_Element_Text('Email');
 		$email->setLabel('Email:')
-		->setOptions(array('size' => '30','class'=>'title'))
+		->setOptions(array('size' => '30'))
 		->setRequired(true)
 		->addValidator("EmailAddress")
 		->addFilter('StringTrim');

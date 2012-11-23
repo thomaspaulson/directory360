@@ -1,17 +1,22 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
-   "http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE html> 
 <html lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <!-- Framework CSS -->
-    <link rel="stylesheet" href="/blueprint/screen.css" type="text/css" media="screen, projection">
-    <link rel="stylesheet" href="/blueprint/print.css" type="text/css" media="print">
-    <!--[if lt IE 8]><link rel="stylesheet" href="../blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
+    <link rel="stylesheet" href="<?php echo $this->baseUrl();?>/blueprint/screen.css" type="text/css" media="screen, projection">
+    <link rel="stylesheet" href="<?php echo $this->baseUrl();?>/blueprint/print.css" type="text/css" media="print">
+    <!--[if lt IE 8]><link rel="stylesheet" href="<?php echo $this->baseUrl();?>/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
     <style type="text/css" media="screen">
       p, table, hr, .box { margin-bottom:25px; }
       .box p { margin-bottom:10px; }
     </style>
-	<?php echo $this->headMeta(); ?>
+    <link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/css/site.css" type="text/css" media="screen, projection">
+
+	<script language="javascript" type="text/javascript" src="<?php echo $this->baseUrl();?>/js/jquery.js"></script>
+	<script language="javascript" type="text/javascript" src="<?php echo $this->baseUrl();?>/js/jquery.coolfieldset.js"></script>
+	<link rel="stylesheet" type="text/css" href="<?php echo $this->baseUrl();?>/css/jquery.coolfieldset.css" />
+    
+	<?php echo $this->headMeta(); ?>	
 	<?php echo $this->headTitle(); ?>
   </head>
   <body>
@@ -23,14 +28,28 @@
 		<div class="span-5">
 			<!--  menu -->
 			<ul>
-			<li>
-			<a href="<?php echo $this->url(array('module'=>'admin',
-		'controller'=>'category','action'=>'index')); ?>">Categories</a>
-			</li>
-			<li>
-			<a href="<?php echo $this->url(array('module'=>'admin',
-		'controller'=>'location','action'=>'index')); ?>">Locations</a>
-			</li>			
+				
+				<li>
+				<a href="<?php echo $this->url(array('module'=>'admin',
+			'controller'=>'business','action'=>'index')); ?>">Listings</a>
+				</li>
+				<li>
+				<a href="<?php echo $this->url(array('module'=>'admin',
+			'controller'=>'jobs','action'=>'index')); ?>">Jobs</a>
+				</li>
+				<li>
+				<a href="<?php echo $this->url(array('module'=>'admin',
+			'controller'=>'page','action'=>'index')); ?>">Pages</a>
+				</li>				
+				<li>				
+				<a href="<?php echo $this->url(array('module'=>'admin',
+			'controller'=>'category','action'=>'index')); ?>">Categories</a>
+				</li>
+				<li>
+				<a href="<?php echo $this->url(array('module'=>'admin',
+			'controller'=>'location','action'=>'index')); ?>">Locations</a>
+				</li>
+						
 			</ul>
 		
 		</div><!-- end of div class="span-5" -->

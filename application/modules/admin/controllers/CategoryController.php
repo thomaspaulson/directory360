@@ -13,12 +13,13 @@ class Admin_CategoryController extends Zend_Controller_Action
     {
         // action body
 		//$industries = new  DirectroyIn_Model_Category();
-		$form = new Directory_Form_Example();
+		//$form = new Directory_Form_Example();
 		$q = Doctrine_Query::create()
 			->from('Directory_Model_Category c')
 			->orderBy('c.ID DESC');
 			
 		$result = $q->fetchArray();
+		//print_r($result);
 		$this->view->records = $result;		
 		//var_dump($result);
 		if ($this->_helper->getHelper('FlashMessenger')->getMessages()) {
@@ -29,7 +30,7 @@ class Admin_CategoryController extends Zend_Controller_Action
 
 	public function addAction()
 	{
-		$form = new Admin_Form_category();
+		$form = new Admin_Form_Category();
 		$form->submit->setLabel('Add');
 		$this->view->form = $form;
 		// process form
@@ -53,7 +54,7 @@ class Admin_CategoryController extends Zend_Controller_Action
 	}		
 	
 	public function editAction(){
-		$form = new Admin_Form_category();
+		$form = new Admin_Form_Category();
 		$form->submit->setLabel('Edit');
 		$this->view->form = $form;
 		// process form 

@@ -13,18 +13,13 @@ Doctrine_Manager::getInstance()->bindComponent('Directory_Model_Jobs', 'doctrine
  * @property integer $LocationID
  * @property string $Skill
  * @property string $ShortDesc
- * @property string $LongDesc
  * @property string $Address
  * @property string $City
  * @property string $District
  * @property string $Phone
  * @property string $Email
+ * @property string $URL
  * @property timestamp $DisplayUntil
- * @property timestamp $Created
- * @property timestamp $Modified
- * @property integer $Status
- * @property integer $Order
- * @property integer $NumVisit
  * 
  * @package    ##PACKAGE##
  * @subpackage ##SUBPACKAGE##
@@ -89,14 +84,6 @@ abstract class Directory_Model_BaseJobs extends Doctrine_Record
              'notnull' => true,
              'autoincrement' => false,
              ));
-        $this->hasColumn('LongDesc', 'string', null, array(
-             'type' => 'string',
-             'fixed' => false,
-             'unsigned' => false,
-             'primary' => false,
-             'notnull' => true,
-             'autoincrement' => false,
-             ));
         $this->hasColumn('Address', 'string', null, array(
              'type' => 'string',
              'fixed' => false,
@@ -141,56 +128,20 @@ abstract class Directory_Model_BaseJobs extends Doctrine_Record
              'notnull' => true,
              'autoincrement' => false,
              ));
+        $this->hasColumn('URL', 'string', 200, array(
+             'type' => 'string',
+             'length' => 200,
+             'fixed' => false,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             ));
         $this->hasColumn('DisplayUntil', 'timestamp', null, array(
              'type' => 'timestamp',
              'fixed' => false,
              'unsigned' => false,
              'primary' => false,
-             'notnull' => true,
-             'autoincrement' => false,
-             ));
-        $this->hasColumn('Created', 'timestamp', null, array(
-             'type' => 'timestamp',
-             'fixed' => false,
-             'unsigned' => false,
-             'primary' => false,
-             'notnull' => true,
-             'autoincrement' => false,
-             ));
-        $this->hasColumn('Modified', 'timestamp', null, array(
-             'type' => 'timestamp',
-             'fixed' => false,
-             'unsigned' => false,
-             'primary' => false,
-             'notnull' => true,
-             'autoincrement' => false,
-             ));
-        $this->hasColumn('Status', 'integer', 1, array(
-             'type' => 'integer',
-             'length' => 1,
-             'fixed' => false,
-             'unsigned' => false,
-             'primary' => false,
-             'default' => '1',
-             'notnull' => true,
-             'autoincrement' => false,
-             ));
-        $this->hasColumn('Order', 'integer', 1, array(
-             'type' => 'integer',
-             'length' => 1,
-             'fixed' => false,
-             'unsigned' => false,
-             'primary' => false,
-             'notnull' => true,
-             'autoincrement' => false,
-             ));
-        $this->hasColumn('NumVisit', 'integer', 4, array(
-             'type' => 'integer',
-             'length' => 4,
-             'fixed' => false,
-             'unsigned' => false,
-             'primary' => false,
-             'default' => '0',
              'notnull' => true,
              'autoincrement' => false,
              ));

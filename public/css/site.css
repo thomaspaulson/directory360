@@ -29,6 +29,9 @@ div#MainMenu{
 	font-weight:bold;
 }
 
+.Footer{
+	margin-top:20px;
+}
 .errors, .alert, .notice, .success, .info {padding:0.8em;margin-bottom:1em;border:2px solid #ddd;}
 .errors, .alert {background:#fbe3e4;color:#8a1f11;border-color:#fbc2c4;}
 .notice {background:#fff6bf;color:#514721;border-color:#ffd324;}
@@ -39,14 +42,22 @@ div#MainMenu{
 .success a {color:#264409;}
 .info a {color:#205791;}
 
+/* register/signin box */
+.BoxContainer{
+	background: none repeat scroll 0 0 #FFFFFF;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+    margin: 6px;
+    padding: 20px;
+    text-align: left;
+}
 
 /* form style */ 
 /*DL, DT, DD TAGS LIST DATA*/
-form dl {
+.BoxContainer form dl {
     margin-bottom:50px;
 }
  
-form dl dt {
+.BoxContainer form dl dt {
     //background:#5f9be3;
     color:#000000;
     float:left;
@@ -56,35 +67,30 @@ form dl dt {
     width:70px;
 }
  
-form dl dd {
+.BoxContainer form dl dd {
     margin:0px 0;
     padding:0px 0;
 }
-form dl dd input[type="text"],dl dd input[type="password"]{
+
+.BoxContainer form dl dt label{   
+   float: left;
+   width: 80px;
+}
+
+.BoxContainer form dl dd input[type="text"],dl dd input[type="password"]{
 	width:210px;
 	padding:5px;
 }
-form ul.errors{
+
+.BoxContainer form ul.errors{
 	margin-left: 90px;
 	margin-right:40px;
 	list-style-type:none;
 }
 
-form ul.errors li{	
-	
+form ul.errors {
+	list-style-type:none;	
 }
 
 
-form dl dt label{   
-   float: left;
-   width: 80px;
-}
 
-/* register/signin box */
-.BoxContainer{
-	background: none repeat scroll 0 0 #FFFFFF;
-    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
-    margin: 6px;
-    padding: 20px;
-    text-align: left;
-}

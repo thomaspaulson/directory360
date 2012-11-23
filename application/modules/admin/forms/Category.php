@@ -4,7 +4,8 @@ class Admin_Form_Category extends Zend_Form
 
 	public function init()
 	{
-		$this->setName('album');
+		$this->setName('Category');
+		
 		$id = new Zend_Form_Element_Hidden('ID');
 		$id->addFilter('Int');
 		

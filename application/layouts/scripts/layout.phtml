@@ -1,6 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
-   "http://www.w3.org/TR/html4/strict.dtd">
-
+<!DOCTYPE html> 
 <html lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -36,13 +34,12 @@
       	</div>
       </div>
       <hr>      
-      <div class="span-24">
-      
+      <div class="span-24 Content">      
 		<?php echo $this->layout()->content; ?>
 	  </div>
-      <p><a href="http://validator.w3.org/check?uri=referer">Valid HTML 4.01 Strict
-        </a></p>
-
+	  <div class="span-24 Footer">
+      <p><a href="http://validator.w3.org/check?uri=referer"><img src="<?php echo $this->baseUrl(); ?>/images/validator.png" alt="Valid HTML 4.01 Strict" class="top"></a></p>
+	  </div>		
     </div>
   </body>
 </html>

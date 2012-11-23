@@ -18,6 +18,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 		'doctrine');
 		return $conn;
 	}
+	
 
 }
 
