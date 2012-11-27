@@ -12,5 +12,12 @@
  */
 class Directory_Model_Listing extends Directory_Model_BaseListing
 {
-
+	
+    public function setUp()
+    {
+        $this->hasOne('Directory_Model_Page', array(
+            'local' => 'PageID',
+            'foreign' => 'ID'
+        ));                
+    }
 }

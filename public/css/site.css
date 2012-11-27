@@ -94,3 +94,8 @@ form ul.errors {
 
 
 
+/* from element style */
+input[type="text"],dl dd input[type="password"]{
+	padding:5px;
+}
+textarea {width:390px;height:150px;padding:5px;}

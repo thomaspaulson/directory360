@@ -1,4 +1,43 @@
-<br /><br />
-<div id="view-content">
-	<p>View script for controller <b>business</b> and script/action name <b>index</b></p>
-</div>
+<?php 
+if(isset($this->messages)){
+	$message = implode($this->messages); 
+	$this->title = $message;
+	echo '<div id="message" class="notice">'.$message.'</div>';
+}
+else
+	$this->title = "Manage business listing";
+	
+$this->headTitle($this->title);
+?>
+<h3><?php echo $this->title; ?></h3>
+<p><a href="<?php echo $this->url(array('module'=>'admin','controller'=>'business',
+'action'=>'add'));?>">Add new</a></p>
+<table>
+<tr>
+	<th>Title</th>
+	<th>Status</th>
+	<th>Created</th>
+	<th>Action</th>
+</tr>
+<?php
+foreach($this->records as $r){
+	echo "<tr>\n";
+		echo "<td>".$r['Title']."</td>\n";
+		echo "<td>";
+		if($r['Status'])
+			echo 'Published';
+		else
+			echo 'Draft';
+		echo "</td>\n";		
+		echo "<td>".$r['Created']."</td>\n";
+		echo "<td>";
+		echo '<a href="'.$this->url(array('module'=>'admin',
+		'controller'=>'page','action'=>'edit','id'=>$r['ID'])).'">Edit</a>';
+		echo ' | ';
+		echo '<a href="'.$this->url(array('module'=>'admin',
+		'controller'=>'page','action'=>'delete','id'=>$r['ID'])).'">Delete</a>';		
+		echo "</td>\n";	
+	echo "</tr>\n";	
+}
+?>
+</table>

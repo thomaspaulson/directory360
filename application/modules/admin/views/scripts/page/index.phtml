@@ -14,7 +14,7 @@ $this->headTitle($this->title);
 'action'=>'add'));?>">Add new</a></p>
 <table>
 <tr>
-	<th>Name</th>
+	<th>Title</th>
 	<th>Status</th>
 	<th>Created</th>
 	<th>Action</th>
@@ -22,7 +22,7 @@ $this->headTitle($this->title);
 <?php
 foreach($this->records as $r){
 	echo "<tr>\n";
-		echo "<td>".$r['Name']."</td>\n";
+		echo "<td>".$r['Title']."</td>\n";
 		echo "<td>";
 		if($r['Status'])
 			echo 'Published';
@@ -32,10 +32,10 @@ foreach($this->records as $r){
 		echo "<td>".$r['Created']."</td>\n";
 		echo "<td>";
 		echo '<a href="'.$this->url(array('module'=>'admin',
-		'controller'=>'category','action'=>'edit','id'=>$r['ID'])).'">Edit</a>';
+		'controller'=>'page','action'=>'edit','id'=>$r['ID'])).'">Edit</a>';
 		echo ' | ';
 		echo '<a href="'.$this->url(array('module'=>'admin',
-		'controller'=>'category','action'=>'delete','id'=>$r['ID'])).'">Deleted</a>';		
+		'controller'=>'page','action'=>'delete','id'=>$r['ID'])).'">Delete</a>';		
 		echo "</td>\n";	
 	echo "</tr>\n";	
 }

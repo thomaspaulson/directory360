@@ -13,4 +13,10 @@
 class Directory_Model_Page extends Directory_Model_BasePage
 {
 
+	public function setUp(){
+        $this->hasOne('Directory_Model_User', array(
+            'local' => 'UserID',
+            'foreign' => 'ID'
+        ));		
+	}
 }

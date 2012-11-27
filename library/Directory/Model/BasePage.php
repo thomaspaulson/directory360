@@ -51,6 +51,15 @@ abstract class Directory_Model_BasePage extends Doctrine_Record
              'notnull' => true,
              'autoincrement' => false,
              ));
+        $this->hasColumn('UserID', 'integer', 4, array(
+             'type' => 'integer',
+             'length' => 4,
+             'fixed' => false,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             ));             
         $this->hasColumn('URL', 'string', 255, array(
              'type' => 'string',
              'length' => 255,

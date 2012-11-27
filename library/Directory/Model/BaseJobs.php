@@ -39,6 +39,7 @@ abstract class Directory_Model_BaseJobs extends Doctrine_Record
              'primary' => true,
              'autoincrement' => true,
              ));
+		/*             
         $this->hasColumn('UserID', 'integer', 4, array(
              'type' => 'integer',
              'length' => 4,
@@ -48,6 +49,7 @@ abstract class Directory_Model_BaseJobs extends Doctrine_Record
              'notnull' => true,
              'autoincrement' => false,
              ));
+        */
         $this->hasColumn('CategoryID', 'integer', 4, array(
              'type' => 'integer',
              'length' => 4,
@@ -128,7 +130,7 @@ abstract class Directory_Model_BaseJobs extends Doctrine_Record
              'notnull' => true,
              'autoincrement' => false,
              ));
-        $this->hasColumn('URL', 'string', 200, array(
+        $this->hasColumn('WebsiteURL', 'string', 200, array(
              'type' => 'string',
              'length' => 200,
              'fixed' => false,

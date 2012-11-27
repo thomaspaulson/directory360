@@ -50,15 +50,6 @@ abstract class Directory_Model_BaseListing extends Doctrine_Record
              'notnull' => true,
              'autoincrement' => false,
              ));
-        $this->hasColumn('UserID', 'integer', 4, array(
-             'type' => 'integer',
-             'length' => 4,
-             'fixed' => false,
-             'unsigned' => false,
-             'primary' => false,
-             'notnull' => true,
-             'autoincrement' => false,
-             ));
         $this->hasColumn('LocationID', 'integer', 4, array(
              'type' => 'integer',
              'length' => 4,
@@ -130,7 +121,7 @@ abstract class Directory_Model_BaseListing extends Doctrine_Record
              'notnull' => true,
              'autoincrement' => false,
              ));
-        $this->hasColumn('URL', 'string', 200, array(
+        $this->hasColumn('WebsiteURL', 'string', 200, array(
              'type' => 'string',
              'length' => 200,
              'fixed' => false,

@@ -34,7 +34,7 @@ foreach($this->records as $r){
 		'controller'=>'location','action'=>'edit','id'=>$r['ID'])).'">Edit</a>';
 		echo ' | ';
 		echo '<a href="'.$this->url(array('module'=>'admin',
-		'controller'=>'location','action'=>'delete','id'=>$r['ID'])).'">Deleted</a>';		
+		'controller'=>'location','action'=>'delete','id'=>$r['ID'])).'">Delete</a>';		
 		echo "</td>\n";	
 	echo "</tr>\n";	
 }

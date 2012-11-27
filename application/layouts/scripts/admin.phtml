@@ -15,16 +15,17 @@
 	<script language="javascript" type="text/javascript" src="<?php echo $this->baseUrl();?>/js/jquery.js"></script>
 	<script language="javascript" type="text/javascript" src="<?php echo $this->baseUrl();?>/js/jquery.coolfieldset.js"></script>
 	<link rel="stylesheet" type="text/css" href="<?php echo $this->baseUrl();?>/css/jquery.coolfieldset.css" />
-    
+	
+    <script language="javascript" type="text/javascript" src="<?php echo $this->baseUrl();?>/js/admin.js"></script>
 	<?php echo $this->headMeta(); ?>	
 	<?php echo $this->headTitle(); ?>
   </head>
   <body>
 
     <div class="container">
-      <h1><a href="<?php echo $this->url(array('module'=>'admin',
+      <h1 style="margin-top:20px"><a href="<?php echo $this->url(array('module'=>'admin',
 		'controller'=>'index','action'=>'index')); ?>">Dashboard</a></h1>
-      <hr />
+      <hr class="space" /><hr />
 		<div class="span-5">
 			<!--  menu -->
 			<ul>

@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <buildpath>
 	<buildpathentry kind="con" path="org.eclipse.php.core.LANGUAGE"/>
-	<buildpathentry kind="src" path="public"/>
-	<buildpathentry kind="src" path="library/DirectoryIn/Model"/>
-	<buildpathentry external="true" kind="lib" path="C:/wamp/www/zend"/>
-	<buildpathentry kind="src" path="application"/>
-	<buildpathentry kind="src" path="tests"/>
-	<buildpathentry kind="src" path="library/DirectoryIn/Form"/>
+	<buildpathentry external="true" kind="lib" path="C:/wamp/zend/library"/>
+	<buildpathentry kind="src" path=""/>
 </buildpath>

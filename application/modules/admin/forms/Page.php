@@ -4,7 +4,7 @@ class Admin_Form_Page extends Zend_Form
 	public function init()
 	{
 		// initialize form
-		$this->setAction('/admin/page/add')
+		$this->setAction('')
 		->setAttribs(array(
 		'class' => 'form',
 		'id' => 'Page'
@@ -18,11 +18,13 @@ class Admin_Form_Page extends Zend_Form
 		$title = new Zend_Form_Element_Text('Title');
 		$title->setLabel('Title:')
 		->setOptions(array('size' => '35'));
+		$title->setRequired(true);
 
 		// create text input for title 
 		$url = new Zend_Form_Element_Text('URL');
 		$url->setLabel('url:')
 		->setOptions(array('size' => '35'));
+		//$url->setRequired(true);
 
 		$content = new Zend_Form_Element_TextArea('Content');
 		$content->setLabel('Content')
@@ -111,5 +113,8 @@ class Admin_Form_Page extends Zend_Form
 		));
 		
 		$this->addElement($submit);
+		
+		
 	}
+	
 }

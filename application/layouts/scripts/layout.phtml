@@ -1,4 +1,5 @@
-<!DOCTYPE html> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
 <html lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -29,7 +30,11 @@
       		</div>
       		<div class="clear"></div>
       		<div id="MainMenu">
-      			<ul class="HeaderMenu"><li>Home</li> | <li>About</li> | <li>Listing</li> | <li>Jobs</li> | <li>Contact</li></ul>
+      			<ul class="HeaderMenu">
+      			<li><a href="<?php echo $this->url(array('controller'=>'index','action'=>'index'));?>"> Home</a></li>  
+      			| <li><a href="<?php echo $this->url(array('controller'=>'business','action'=>'index'));?>">Listing</a></li> 
+      			| <li><a href="<?php echo $this->url(array('controller'=>'jobs','action'=>'index'));?>">Jobs</a></li> 
+      			| <li><a href="<?php echo $this->url(array('controller'=>'contact','action'=>'index'));?>">Contact</a></li></ul>
       		</div>
       	</div>
       </div>

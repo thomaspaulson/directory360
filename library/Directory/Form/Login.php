@@ -35,5 +35,9 @@ class Directory_Form_Login extends Zend_Form
 		$this->addElement($email)
 		->addElement($password)
 		->addElement($submit);
+		
+		$redirect = new Zend_Form_Element_Hidden('Redirect');
+		$redirect->addFilter('StringTrim');
+		$this->addElement($redirect);
 	}
 }

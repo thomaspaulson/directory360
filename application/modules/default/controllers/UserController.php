@@ -12,15 +12,21 @@ class Default_UserController extends Directory_Controller_Action
     public function indexAction()
     {
         // action body
-        $session = new Zend_Session_Namespace('Directory.auth');
-        if(!isset($session->user)){
-        	$this->_redirect('user/login');
-        }
+        
+		// check if user is authenticated
+		// if no, redirect to login page
+		// if yes, proceed as normal    	
+	    if (!Zend_Auth::getInstance()->hasIdentity()) {
+			$this->_redirect('/user/login');
+		}
+		    	
     	if ($this->_helper->getHelper('FlashMessenger')->getMessages()) {
 			$this->view->messages = $this->_helper
 			->getHelper('FlashMessenger')
 			->getMessages();
-		}                
+		}    
+		            
+		//echo Zend_Auth::getInstance()->getIdentity();
 		
         $this->view->user = $session->user;  
         
@@ -44,20 +50,27 @@ class Default_UserController extends Directory_Controller_Action
 				$result = $auth->authenticate($adapter);
 				if ($result->isValid()) {
 					$session = new Zend_Session_Namespace('Directory.auth');
-					$session->user = $adapter->getResultArray(array('Password','Created','Modified')); 
-					if (isset($session->requestURL)) {
-						$url = $session->requestURL;
-						unset($session->requestURL);
-						$this->_redirect($url);
-					} else {
+					$session->user = $adapter->getResultArray(array('Password','Created','Modified'));
+					
+					$redirectUrl = $values['Redirect']; 
+					if ($redirectUrl!='') {
+						$this->_redirect($redirectUrl);
+					} 
+					else {
 						$this->_helper->getHelper('FlashMessenger')
 						->addMessage('You were successfully logged in.');
 						$this->_redirect('/dashboard/index');
 					}
+					
 				} else {
 					$this->view->message =	'You could not be logged in. Please try again.';
 				}
 			}
+		}
+		else{
+			$redirectUrl = $this->_getParam('Redirect','');
+			$form->Redirect->setValue($redirectUrl);
+			
 		}
 	}
 	
@@ -89,8 +102,9 @@ class Default_UserController extends Directory_Controller_Action
 			}
 		}
 		else{
-			$redirectUrl = $this->_getParam('redirect',null);
+			$redirectUrl = $this->_getParam('Redirect',null);
 			$form->Redirect->setValue($redirectUrl);
+
 		}
 	}
 
