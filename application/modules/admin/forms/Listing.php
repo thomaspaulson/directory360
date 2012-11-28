@@ -18,6 +18,7 @@ class Admin_Form_Listing extends Zend_Form
 		->addValidator('Int')
 		->addFilter('HtmlEntities')
 		->addFilter('StringTrim'); 
+		$category->addMultiOption('', 'select');
 		foreach ($this->getCategories() as $c) {
 		$category->addMultiOption($c['ID'], $c['Name']);
 		}
@@ -29,6 +30,7 @@ class Admin_Form_Listing extends Zend_Form
 		->addValidator('Int')
 		->addFilter('HtmlEntities')
 		->addFilter('StringTrim'); 
+		$location->addMultiOption('', 'select');
 		foreach ($this->getLocations() as $c) {
 		$location->addMultiOption($c['ID'], $c['Name']);
 		}

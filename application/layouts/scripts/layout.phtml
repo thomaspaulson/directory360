@@ -25,8 +25,22 @@
       	<div id="HeaderMenu" class="span-8 last">
       		<div id="SignUp">
       			<ul class="HeaderMenu">
-				<li><a href="<?php echo $this->url(array('controller'=>'user','action'=>'login'));?>">Sign in</a></li>
-				| <li><a href="<?php echo $this->url(array('controller'=>'user','action'=>'register'));?>">Register</a></li></ul>
+      			<?php 
+      			$session = new Zend_Session_Namespace('Directory.auth');
+				$userId = $session->user['ID'];
+				if($userId){
+      			?>
+					<li><a href="<?php echo $this->url(array('controller'=>'user','action'=>'logout'));?>">Logout</a></li>
+					| <li><a href="<?php echo $this->url(array('controller'=>'dashboard','action'=>'index'));?>">Dashboard</a></li></ul>
+				<?php 
+				}
+				else {				
+				?>
+					<li><a href="<?php echo $this->url(array('controller'=>'user','action'=>'login'));?>">Sign in</a></li>
+					| <li><a href="<?php echo $this->url(array('controller'=>'user','action'=>'register'));?>">Register</a></li></ul>
+				<?php
+				}				 
+				?>
       		</div>
       		<div class="clear"></div>
       		<div id="MainMenu">

@@ -23,9 +23,37 @@
   <body>
 
     <div class="container">
-      <h1 style="margin-top:20px"><a href="<?php echo $this->url(array('module'=>'admin',
-		'controller'=>'index','action'=>'index')); ?>">Dashboard</a></h1>
-      <hr class="space" /><hr />
+    <div class="container">
+	  <div class="span-24" id="Header">
+	  	<div class="span-16">
+    	      <h1 style="margin-top:20px"><a href="<?php echo $this->url(array('module'=>'admin',
+		'controller'=>'index','action'=>'index')); ?>">Admin</a></h1>
+
+      	</div>
+      	<div id="HeaderMenu" class="span-8 last">
+    
+			<div id="SignUp">
+      			<ul class="HeaderMenu">
+      			<?php 
+      			$session = new Zend_Session_Namespace('Directory.auth');
+				$userId = $session->user['ID'];
+				if($userId){
+      			?>
+					<li><a href="<?php echo $this->url(array('module'=>'default','controller'=>'user','action'=>'logout'));?>">Logout</a></li>
+					| <li><a href="<?php echo $this->url(array('module'=>'default','controller'=>'dashboard','action'=>'index'));?>">Dashboard</a></li></ul>
+				<?php 
+				}
+				else {				
+				?>
+					<li><a href="<?php echo $this->url(array('controller'=>'user','action'=>'login'));?>">Sign in</a></li>
+					| <li><a href="<?php echo $this->url(array('controller'=>'user','action'=>'register'));?>">Register</a></li></ul>
+				<?php
+				}				 
+				?>
+      		</div>
+      	</div>
+      </div>		
+      <hr/>
 		<div class="span-5">
 			<!--  menu -->
 			<ul>

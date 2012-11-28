@@ -22,20 +22,20 @@ $this->headTitle($this->title);
 <?php
 foreach($this->records as $r){
 	echo "<tr>\n";
-		echo "<td>".$r['Title']."</td>\n";
+		echo "<td>".$r['Directory_Model_Page']['Title']."</td>\n";
 		echo "<td>";
-		if($r['Status'])
+		if($r['Directory_Model_Page']['Status'])
 			echo 'Published';
 		else
 			echo 'Draft';
 		echo "</td>\n";		
-		echo "<td>".$r['Created']."</td>\n";
+		echo "<td>".$r['Directory_Model_Page']['Created']."</td>\n";
 		echo "<td>";
 		echo '<a href="'.$this->url(array('module'=>'admin',
-		'controller'=>'page','action'=>'edit','id'=>$r['ID'])).'">Edit</a>';
+		'controller'=>'page','action'=>'edit','id'=>$r['PageID'])).'">Edit</a>';
 		echo ' | ';
 		echo '<a href="'.$this->url(array('module'=>'admin',
-		'controller'=>'page','action'=>'delete','id'=>$r['ID'])).'">Delete</a>';		
+		'controller'=>'page','action'=>'delete','id'=>$r['PageID'])).'">Delete</a>';		
 		echo "</td>\n";	
 	echo "</tr>\n";	
 }

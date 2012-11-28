@@ -16,7 +16,8 @@ class Admin_BusinessController extends Zend_Controller_Action
 		//$form = new Directory_Form_Example();
 		$q = Doctrine_Query::create()
 			->from('Directory_Model_Listing l')
-			->orderBy('l.ID DESC');
+			->leftJoin('l.Directory_Model_Page')
+			->orderBy('l.PageID DESC');
 			
 		$result = $q->fetchArray();
 		$this->view->records = $result;		
@@ -45,11 +46,14 @@ class Admin_BusinessController extends Zend_Controller_Action
 				$page->save();
 				$pageID = $page->ID;
 				
-				$listing = new Directory_Model_Page();
+				$listing = new Directory_Model_Listing();
+				$listing->fromArray($form->getValues());
+				$listing->PageID = $pageID;
+				$listing->save();
 				
 				$this->_helper->getHelper('FlashMessenger')->addMessage(
-				'New page created #' . $id );
-				$this->_redirect('/admin/page');			
+				'New listing created #' . $pageID );
+				$this->_redirect('/admin/business');			
 			} else {
 				$form->populate($formData);
 			}

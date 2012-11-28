@@ -98,7 +98,7 @@ class Default_UserController extends Directory_Controller_Action
 				if($redirectUrl!='')
 					$this->_redirect($redirectUrl);
 				else 
-					$this->_redirect('user');
+					$this->_redirect('/dashboard/index');
 			}
 		}
 		else{
