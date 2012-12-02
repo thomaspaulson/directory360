@@ -19,5 +19,6 @@ class Directory_Model_Listing extends Directory_Model_BaseListing
             'local' => 'PageID',
             'foreign' => 'ID'
         ));                
-    }
+	}
+	
 }

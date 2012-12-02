@@ -50,6 +50,17 @@ abstract class Directory_Model_BaseJobs extends Doctrine_Record
              'autoincrement' => false,
              ));
         */
+             
+        $this->hasColumn('PageID', 'integer', 4, array(
+             'type' => 'integer',
+             'length' => 4,
+             'fixed' => false,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             ));
+             
         $this->hasColumn('CategoryID', 'integer', 4, array(
              'type' => 'integer',
              'length' => 4,

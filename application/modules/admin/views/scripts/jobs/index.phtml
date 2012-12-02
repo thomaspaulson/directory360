@@ -5,12 +5,12 @@ if(isset($this->messages)){
 	echo '<div id="message" class="notice">'.$message.'</div>';
 }
 else
-	$this->title = "Manage business listing";
+	$this->title = "Manage Jobs";
 	
 $this->headTitle($this->title);
 ?>
 <h3><?php echo $this->title; ?></h3>
-<p><a href="<?php echo $this->url(array('module'=>'admin','controller'=>'business',
+<p><a href="<?php echo $this->url(array('module'=>'admin','controller'=>'jobs',
 'action'=>'add'),'default',true);?>">Add new</a></p>
 <table>
 <tr>
@@ -32,10 +32,10 @@ foreach($this->records as $r){
 		echo "<td>".$r['Directory_Model_Page']['Created']."</td>\n";
 		echo "<td>";
 		echo '<a href="'.$this->url(array('module'=>'admin',
-		'controller'=>'business','action'=>'edit','id'=>$r['PageID']),'default',true ).'">Edit</a>';
+		'controller'=>'jobs','action'=>'edit','id'=>$r['PageID']),'default',true ).'">Edit</a>';
 		echo ' | ';
 		echo '<a href="'.$this->url(array('module'=>'admin',
-		'controller'=>'business','action'=>'delete','id'=>$r['PageID'])).'">Delete</a>';		
+		'controller'=>'jobs','action'=>'delete','id'=>$r['PageID'])).'">Delete</a>';		
 		echo "</td>\n";	
 	echo "</tr>\n";	
 }

@@ -13,4 +13,12 @@
 class Directory_Model_Jobs extends Directory_Model_BaseJobs
 {
 
+    public function setUp()
+    {
+        $this->hasOne('Directory_Model_Page', array(
+            'local' => 'PageID',
+            'foreign' => 'ID'
+        ));                
+	}
+	
 }

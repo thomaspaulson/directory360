@@ -1,5 +1,5 @@
 <?php
-class Admin_PageController extends Zend_Controller_Action
+class Admin_JobsController extends Zend_Controller_Action
 {
 
     public function init()
@@ -19,14 +19,16 @@ class Admin_PageController extends Zend_Controller_Action
 		
     }
 
+	
     public function indexAction()
     {
         // action body
 		//$industries = new  DirectroyIn_Model_Category();
-		
+		//$form = new Directory_Form_Example();
 		$q = Doctrine_Query::create()
-			->from('Directory_Model_Page p')
-			->orderBy('p.ID DESC');
+			->from('Directory_Model_Jobs j')
+			->leftJoin('j.Directory_Model_Page')
+			->orderBy('j.PageID DESC');
 			
 		$result = $q->fetchArray();
 		$this->view->records = $result;		
@@ -37,9 +39,8 @@ class Admin_PageController extends Zend_Controller_Action
 		} 
     }	
     
-
     public function addAction(){
-		$form = new Admin_Form_Page();
+		$form = new Admin_Form_Job();
 		$form->submit->setLabel('Add');
 		$this->view->form = $form;
 		// process form
@@ -50,14 +51,21 @@ class Admin_PageController extends Zend_Controller_Action
 				$page = new Directory_Model_Page();
 				$page->fromArray($form->getValues());
 				$page->Created = date('Y-m-d H:i:s', mktime());
+				$page->Controller = 'jobs';
 				$session = new Zend_Session_Namespace('Directory.auth');
-				$page->UserID = $session->user['ID'];
+				$page->UserID = $session->user['ID'];		
 				
 				$page->save();
-				$id = $page->ID;
+				$pageID = $page->ID;
+				
+				$job = new Directory_Model_Jobs();
+				$job->fromArray($form->getValues());
+				$job->PageID = $pageID;
+				$job->save();
+				
 				$this->_helper->getHelper('FlashMessenger')->addMessage(
-				'New page created #' . $id );
-				$this->_redirect('/admin/page');			
+				'New listing created #' . $pageID );
+				$this->_redirect('/admin/jobs');			
 			} else {
 				$form->populate($formData);
 			}
@@ -65,7 +73,7 @@ class Admin_PageController extends Zend_Controller_Action
     }
 
 	public function editAction(){
-		$form = new Admin_Form_Page();
+		$form = new Admin_Form_Job();
 		$form->submit->setLabel('Update');
 		$this->view->form = $form;
 		// process form 
@@ -76,12 +84,22 @@ class Admin_PageController extends Zend_Controller_Action
 				$page = Doctrine::getTable('Directory_Model_Page')->find($input['ID']);
 				$page->fromArray($input);
 				$page->Modified = date('Y-m-d H:i:s', mktime());
-				//$page->Modified = time();
 				$page->save();
+				
+				
+				$q= Doctrine::getTable('Directory_Model_Jobs')
+				->createQuery('j')
+  				->where('j.PageID = ?', $input['ID']);
+  				$job = $q->fetchOne();
+  				
+				$job->fromArray($input);
+				$job->save();
+				
+				
 				$id = $page->ID;
 				$this->_helper->getHelper('FlashMessenger')->addMessage(
-				'page updated  #' . $id );
-				$this->_redirect('/admin/page');			
+				'Job updated  #' . $id );
+				$this->_redirect('/admin/jobs');			
 			} else {
 				$form->populate($formData);
 			}
@@ -94,10 +112,17 @@ class Admin_PageController extends Zend_Controller_Action
 				->where('p.ID = ?', $id);
 				$result = $q->fetchArray();
 				if (count($result) == 1) {
-				// perform adjustment for date selection lists
-				$form->populate($result[0]); 
+					$form->populate($result[0]);
+					
+					$q = Doctrine_Query::create()
+					->from('Directory_Model_Jobs j')
+					->where('j.PageID = ?', $id);
+					$result = $q->fetchArray();
+					unset($result[0]['ID']);
+					$form->populate($result[0]);								
+					
 				} else {
-				throw new Zend_Controller_Action_Exception('Page not found', 404);
+					throw new Zend_Controller_Action_Exception('Page not found', 404);
 				}			
 			}			
 		} //endof  else ($this->getRequest()->isPost()) {
@@ -110,13 +135,20 @@ class Admin_PageController extends Zend_Controller_Action
 			$del = $this->getRequest()->getPost('del');
 			if ($del == 'Yes') { 
 				$id = $this->getRequest()->getPost('id');
-				//echo $id; 
+				//echo $id;
+				$q = Doctrine_Query::create()
+				->delete('Directory_Model_Jobs j')
+				->where('j.PageID = ?', array($id));
+				$result = $q->execute();		
+				
 				$q = Doctrine_Query::create()
 				->delete('Directory_Model_Page  p')
 				->where('p.ID = ?', array($id));
-				$result = $q->execute();		
+				$result = $q->execute();
+				
+				
 				$this->_helper->getHelper('FlashMessenger')->addMessage(
-				'Page deleted #' . $id );				
+				'Listing deleted #' . $id );				
 			}
 			$this->_helper->redirector('index');
 		} else {
@@ -134,6 +166,5 @@ class Admin_PageController extends Zend_Controller_Action
 		}
 	}
     
-    
-}
+} /// end of classs
 

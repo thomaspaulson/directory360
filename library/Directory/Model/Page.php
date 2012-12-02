@@ -14,9 +14,26 @@ class Directory_Model_Page extends Directory_Model_BasePage
 {
 
 	public function setUp(){
+		
         $this->hasOne('Directory_Model_User', array(
             'local' => 'UserID',
             'foreign' => 'ID'
+        ));
+        
+        $this->hasOne('Directory_Model_Listing', array(
+            'local' => 'ID',
+            'foreign' => 'PageID'
+        ));
+        		
+        $this->hasOne('Directory_Model_Category', array(
+            'local' => 'ID',
+            'foreign' => 'CategoryID'
         ));		
+        
+        $this->hasOne('Directory_Model_Location', array(
+            'local' => 'ID',
+            'foreign' => 'LocationID'
+        ));		
+        
 	}
 }
