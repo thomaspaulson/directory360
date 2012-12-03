@@ -28,6 +28,7 @@ class Admin_BusinessController extends Zend_Controller_Action
 		$q = Doctrine_Query::create()
 			->from('Directory_Model_Listing l')
 			->leftJoin('l.Directory_Model_Page')
+			->where('l.Directory_Model_Page.Controller = ?', 'business')
 			->orderBy('l.PageID DESC');
 			
 		$result = $q->fetchArray();

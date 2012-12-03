@@ -28,6 +28,7 @@ class Admin_JobsController extends Zend_Controller_Action
 		$q = Doctrine_Query::create()
 			->from('Directory_Model_Jobs j')
 			->leftJoin('j.Directory_Model_Page')
+			->where('j.Directory_Model_Page.Controller = ?', 'jobs')
 			->orderBy('j.PageID DESC');
 			
 		$result = $q->fetchArray();

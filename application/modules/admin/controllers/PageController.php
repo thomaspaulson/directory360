@@ -26,6 +26,7 @@ class Admin_PageController extends Zend_Controller_Action
 		
 		$q = Doctrine_Query::create()
 			->from('Directory_Model_Page p')
+			->where('p.Controller = ?', 'page')
 			->orderBy('p.ID DESC');
 			
 		$result = $q->fetchArray();
@@ -50,6 +51,8 @@ class Admin_PageController extends Zend_Controller_Action
 				$page = new Directory_Model_Page();
 				$page->fromArray($form->getValues());
 				$page->Created = date('Y-m-d H:i:s', mktime());
+				$page->Controller = 'page';
+				
 				$session = new Zend_Session_Namespace('Directory.auth');
 				$page->UserID = $session->user['ID'];
 				
