@@ -28,6 +28,7 @@ class Admin_BusinessController extends Zend_Controller_Action
 		$q = Doctrine_Query::create()
 			->from('Directory_Model_Listing l')
 			->leftJoin('l.Directory_Model_Page')
+			->where('l.Directory_Model_Page.Controller = ?', array('business'))
 			->orderBy('l.PageID DESC');
 			
 		$result = $q->fetchArray();
@@ -51,8 +52,7 @@ class Admin_BusinessController extends Zend_Controller_Action
 				$page = new Directory_Model_Page();
 				$page->fromArray($form->getValues());
 				$page->Created = date('Y-m-d H:i:s', mktime());
-				$page->Controller = 'business';
-				
+				$page->Controller = 'business';				
 				$session = new Zend_Session_Namespace('Directory.auth');
 				$page->UserID = $session->user['ID'];		
 				
@@ -66,7 +66,7 @@ class Admin_BusinessController extends Zend_Controller_Action
 				
 				$this->_helper->getHelper('FlashMessenger')->addMessage(
 				'New job created #' . $pageID );
-				$this->_redirect('/admin/jobs');			
+				$this->_redirect('/admin/business');			
 			} else {
 				$form->populate($formData);
 			}
@@ -85,6 +85,7 @@ class Admin_BusinessController extends Zend_Controller_Action
 				$page = Doctrine::getTable('Directory_Model_Page')->find($input['ID']);
 				$page->fromArray($input);
 				$page->Modified = date('Y-m-d H:i:s', mktime());
+				$page->Controller = 'business';
 				$page->save();
 				
 				
@@ -109,7 +110,7 @@ class Admin_BusinessController extends Zend_Controller_Action
 			if ($id > 0) {
 				$q = Doctrine_Query::create()
 				->from('Directory_Model_Page p')
-				->where('p.ID = ?', $id);
+				->where('p.ID = ? and p.Controller =?', array($id,'business'));
 				$result = $q->fetchArray();
 				if (count($result) == 1) {
 					$form->populate($result[0]);
